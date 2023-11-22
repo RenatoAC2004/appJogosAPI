@@ -26,7 +26,7 @@ app.get('/games', async (req, res) => {
 app.post('/games', async (req, res) => {
     const {title, thumbnail, status, short_description} = req.body;
     const jogo = await Jogo.create({title, thumbnail, status, short_description});
-    res.json(jogo);
+    res.json(jogo, title, thumbnail, status, short_description);
 });
 
 app.put('/games', async (req, res) => {
