@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 const banco = new Sequelize(config.development);
 
-const Jogo = banco.define('./models/jogos.js');
+const Jogo = require('./Models/jogos')(banco, Sequelize);
 
 banco.sync().then(() => {
     console.log("Modelo sincronizado com o banco de dados.")
@@ -39,7 +39,7 @@ app.put('/games', async (req, res) => {
     res.json(jogo);
 });
 
-app.delete('/games', async (req, res) => {
+app.delete('/games/:id', async (req, res) => {
     const {id} = req.params;
 
     await Jogo.destroy({where: {id} });
