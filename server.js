@@ -23,13 +23,19 @@ app.get('/games', async (req, res) => {
     res.json(jogos);
 });
 
+app.get('/games/:id', async (req, res) => {
+    const {id} = req.params;
+    const jogos = await Jogo.findByPk(id)
+    res.json(jogos);
+});
+
 app.post('/games', async (req, res) => {
     const {title, thumbnail, status, short_description} = req.body;
     const jogo = await Jogo.create({title, thumbnail, status, short_description});
     res.json(jogo);
 });
 
-app.put('/games', async (req, res) => {
+app.put('/games/:id', async (req, res) => {
     const {id} = req.params;
     const {title, thumbnail, status, short_description} = req.body;
     
