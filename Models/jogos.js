@@ -2,10 +2,6 @@ const { Sequelize, DataTypes } = require("sequelize");
 
 module.exports = (Sequelize, DataTypes) => {
     const Jogo = sequelize.define('Jogo', {
-        id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-        },
         title: {
             type: DataTypes.STRING,
             allowNull: false,
